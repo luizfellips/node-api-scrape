@@ -7,7 +7,7 @@ $(document).ready(function () {
         event.preventDefault();
 
         // show loading animation
-        $('.isLoading').show();
+        $('.isLoading').css('display', 'flex');
 
         const keyword = $('#keyword').val();
         const url = 'http://localhost:3000/api/scrape';

@@ -46,7 +46,7 @@ app.get('/api/scrape', async (req, res) => {
     }
 
     try {
-        const response = await fetchAmazonPage(`https://www.amazon.com.br/s?k=${keyword}`);
+        const response = await fetchAmazonPage(`https://www.amazon.com/s?k=${keyword}`);
         const document = new JSDOM(response.data).window.document;
         const searchResults = document.querySelectorAll('[data-component-type="s-search-result"]');
 

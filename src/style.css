@@ -45,6 +45,10 @@ input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 30px #ffffff inset;
 }
 
+.isLoading {
+    background-color: transparent;
+}
+
 /* HTML: <div class="loader"></div> */
 .loader {
     margin-block-start: 10px;
