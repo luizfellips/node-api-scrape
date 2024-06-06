@@ -12,7 +12,7 @@ app.use((req, res, next) => {
 });
 
 /**
- * Function to mimic a browser request and avoid blocking due to server issue or network error by retrying the request x times
+ * Function to mimic a browser request and avoid blocking due to server issue or network error by setting user agent and retrying the request x times
  * @param url Url to fetch
  * @param retries number of retry attempts(default 3)
  */

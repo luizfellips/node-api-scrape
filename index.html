@@ -7,17 +7,22 @@
     <link rel="stylesheet" href="src/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/request.js"></script>
     <title>Amazon Scraping</title>
 </head>
 
 <body>
     <div class="flex flex-col">
         <div class="centered">
-            <img src="src/pngegg.png" alt="" class="logo">
+            <img src="src/amazon-logo.png" alt="" class="logo">
             <form action="#" method="post" id="scrapingForm">
-                <input type="text" id="keyword" placeholder="Enter keyword for scraping">
+                <input type="text" id="keyword" required placeholder="Enter keyword for scraping">
                 <input type="submit" value="Search">
             </form>
+        </div>
+
+        <div class="isLoading hidden">
+            <div class="loader"></div>
         </div>
 
         <div class="modal">
@@ -33,88 +38,6 @@
             </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
-            $('#scrapingForm').on('submit', function (event) {
-                event.preventDefault();
-                const keyword = $('#keyword').val();
-
-                $.ajax({
-                    url: 'http://localhost:3000/api/scrape', // replace with your server endpoint
-                    method: 'GET',
-                    data: { keyword: keyword },
-                    success: function (response) {
-                        processResponse(response, keyword);
-                    },
-                    error: function (xhr, status, error) {
-                        console.error(error);
-                    }
-                });
-            });
-        });
-
-        function processResponse(response, keyword) {
-            $('.keyword').text(keyword);
-
-            $('.items-container').empty();
-
-            displayItems(1, response);
-            $('.modal').show();
-
-        }
-
-        function generateItem(element) {
-            const item = $('<div>').addClass('item bg-white p-4 rounded-md shadow-md');
-
-            let title = $('<h2>').addClass('text-xs font-semibold mb-2').text(element.title);
-            item.append(title);
-
-            let stars = $('<p>').addClass('text-gray-600 text-xs mb-2').text('Stars: ' + element.stars);
-            item.append(stars);
-
-            let reviews = $('<p>').addClass('text-gray-600 text-xs mb-2').text('Reviews: ' + element.reviews);
-            item.append(reviews);
-
-            let imageUrl = $('<img>').attr('src', element.imageUrl).addClass('w-20 h-20 object-contain mx-auto');
-            item.append(imageUrl);
-
-            return item;
-        }
-
-        function displayItems(page, response) {
-            const itemsPerPage = 12;
-            const totalPages = Math.ceil(response.length / itemsPerPage);
-            const startIndex = (page - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const itemsToShow = response.slice(startIndex, endIndex);
-
-            $('.items-container').empty(); // Clear existing items
-
-            itemsToShow.forEach(element => {
-                const item = generateItem(element);
-                $('.items-container').append(item);
-            });
-
-            updatePagination(page, totalPages, itemsPerPage, response);
-        }
-
-        function updatePagination(currentPage, totalPages, itemsPerPage, response) {
-            $('.pagination').empty(); // Clear existing pagination
-
-            for (let i = 1; i <= totalPages; i++) {
-                const pageLink = $('<a>').addClass('text-blue-500 hover:underline cursor-pointer px-2').text(i);
-                if (i === currentPage) {
-                    pageLink.addClass('font-bold');
-                } else {
-                    pageLink.on('click', function () {
-                        displayItems(i, response);
-                    });
-                }
-                $('.pagination').append(pageLink);
-            }
-        }
-    </script>
-
 </body>
 
 </html>

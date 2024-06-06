@@ -5,14 +5,14 @@ body, html {
     justify-content: center;
     align-items: center;
     font-family: Arial, sans-serif;
-    background-color: #FDFFE2;
+    background-color: #146eb4;
 }
 
 .centered, .modal {
     text-align: center;
-    background: #83B4FF;
+    background: #f2f2f2;
     padding: 2em;
-    border-radius: 10px;
+    border-radius: 4px;
     color: #1A2130;
     display: flex;
     flex-direction: column;
@@ -32,7 +32,48 @@ input[type="text"] {
     border: none;
     border-radius: 10px;
     transition: 0.2s;
+    background: #ff9900;
+    color: #232f3e;
 }
+
+input[type="text"]::placeholder {
+    color: #232f3e;
+}
+
+/* Cor de fundo do autocomplete */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #ffffff inset;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    margin-block-start: 10px;
+    width: 50px;
+    aspect-ratio: 1;
+    display: grid;
+    color: #ffffff;
+    background: radial-gradient(farthest-side, currentColor calc(100% - 6px),#0000 calc(100% - 5px) 0);
+    -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 13px),#000 calc(100% - 12px));
+    border-radius: 50%;
+    animation: l19 2s infinite linear;
+  }
+  .loader::before,
+  .loader::after {    
+    content: "";
+    grid-area: 1/1;
+    background:
+      linear-gradient(currentColor 0 0) center,
+      linear-gradient(currentColor 0 0) center;
+    background-size: 100% 10px,10px 100%;
+    background-repeat: no-repeat;
+  }
+  .loader::after {
+     transform: rotate(45deg);
+  }
+  
+  @keyframes l19 { 
+    100%{transform: rotate(1turn)}
+  }
 
 input[type="submit"] {
     padding: 10px 20px;
@@ -40,8 +81,9 @@ input[type="submit"] {
     cursor: pointer;
     border: none;
     border-radius: 10px;
-    background-color: #FDFFE2;
+    background-color: #ff9900;
     transition: 0.2s;
+    color: #232f3e;
 }
 
 input[type="submit"]:hover, input[type="text"]:focus {
