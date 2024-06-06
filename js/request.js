@@ -48,8 +48,8 @@ function generateItem(element) {
 function displayItems(page, response) {
     const itemsPerPage = 12;
 
-    // if page is 2 and items per page is 12, means 12 items have been shown in page 1(item 1 to 12), therefore start at item 24 and finish at
-    // 24 + 12 = finish at item 36
+    // if page is 2 and items per page is 12, means 12 items have been shown in page 1(item 1 to 12), therefore start at item 12 and finish at
+    // 12 + 12 = finish at item 24
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
 
