@@ -1,0 +1,55 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background-color: #FDFFE2;
+}
+
+.centered, .modal {
+    text-align: center;
+    background: #83B4FF;
+    padding: 2em;
+    border-radius: 10px;
+    color: #1A2130;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal {
+    display: none;
+    padding: 0;
+    padding-block-end: 2em;
+}
+
+input[type="text"] {
+    padding: 10px;
+    margin-right: 18px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    background-color: #FDFFE2;
+    transition: 0.2s;
+}
+
+input[type="submit"]:hover, input[type="text"]:focus {
+    transform: scale(1.1);
+    outline: none;
+}
+
+.logo {
+    width: 120px;
+    height: 120px;
+}

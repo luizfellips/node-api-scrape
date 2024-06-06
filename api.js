@@ -5,6 +5,12 @@ const { JSDOM } = require('jsdom');
 const app = express();
 const port = 3000;
 
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+});
+
 /**
  * Function to mimic a browser request and avoid blocking due to server issue or network error by retrying the request x times
  * @param url Url to fetch
